@@ -6,7 +6,6 @@ const newImgBtn = document.querySelector('#newImgBtn');
 const galleryContainer = document.body.querySelector('#galleryContainer');
 
 let randomizeImages = Math.round(Math.random() * 20);
-console.log(randomizeImages);
 
 fetch(`https://picsum.photos/v2/list?page=${randomizeImages}&limit=50`)
     .then(response => 
