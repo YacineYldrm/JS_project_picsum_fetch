@@ -16,10 +16,8 @@ fetch(`https://picsum.photos/v2/list?page=0&limit=50`)
     })
     .then(data =>
     {
-        // console.log(data);
         createGallery(data);
     })
-    // todo: Error window?
     .catch(error => console.log(error));
 
 const createGallery = (piscumData) =>
@@ -67,9 +65,7 @@ newImgBtn.addEventListener('click', () =>
     })
     .then(data =>
     {
-        // console.log(data);
         createGallery(data);
     })
-    // todo: Error window?
     .catch(error => window.confirm(error));
 })
