@@ -33,12 +33,11 @@ body
     .new_img_btn
     {
         background-color: rgb(83, 86, 250);
-        display: block;
+        display: inline-block;
         padding: 8px 16px;
         border-radius: 6px;
         color: white;
         width: fit-content;
-        margin: 12px;
     }
     
 
@@ -46,10 +45,8 @@ body
     {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
+        gap: 24px;
 
-        
-        
         figure
         {
             display: flex;
@@ -60,6 +57,8 @@ body
             img
             {
                 border-radius: 4px;
+                height: 300px;
+                object-fit: cover;
                 box-shadow: 0px 0px 5px 0px black;
             }
 

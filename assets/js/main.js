@@ -5,27 +5,32 @@
 const newImgBtn = document.querySelector('#newImgBtn');
 const galleryContainer = document.body.querySelector('#galleryContainer');
 
-let randomizeImages = Math.round(Math.random() * 20);
+let pageParam = Math.ceil(Math.random() * 20);
 
-fetch(`https://picsum.photos/v2/list?page=${randomizeImages}&limit=50`)
-    .then(response => 
-    {
-        if(response.ok === false)
+const fetchRequest = () =>
+{
+    fetch(`https://picsum.photos/v2/list?page=${pageParam}&limit=50`)
+        .then(response => 
         {
-            throw new Error("Something went wrong");
-        }
-        return response.json()
-    })
-    .then(data =>
-    {
-        createGallery(data);
-    })
-    .catch(error => console.log(error));
+            if(response.ok === false)
+            {
+                throw new Error("Something went wrong");
+            }
+            return response.json()
+        })
+        .then(data =>
+        {
+            renderItems(data);
+        })
+        .catch(error => console.log(error));
+}
 
-const createGallery = (piscumData) =>
+fetchRequest();
+
+const renderItems = (picsumData) =>
 {
     galleryContainer.innerHTML = "";
-    piscumData.forEach(figure => 
+    picsumData.forEach(figure => 
     {
         const figureElt = document.createElement('figure');
         const img = document.createElement('img');
@@ -43,29 +48,14 @@ const createGallery = (piscumData) =>
     })
 }  
 
-let pageParam = 1;
-
 newImgBtn.addEventListener('click', () =>
 {
-    
     pageParam++
+    
     if(pageParam > 20)
     {
-        pageParam = 0;
+        pageParam = 1;
     }
 
-    fetch(`https://picsum.photos/v2/list?page=${pageParam}&limit=50`)
-    .then(response => 
-    {
-        if(response.ok === false)
-        {
-            throw new Error("Oops, something went wrong");
-        }
-        return response.json()
-    })
-    .then(data =>
-    {
-        createGallery(data);
-    })
-    .catch(error => window.confirm(error));
-})
+    fetchRequest();
+});
