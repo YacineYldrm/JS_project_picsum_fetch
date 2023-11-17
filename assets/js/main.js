@@ -5,7 +5,10 @@
 const newImgBtn = document.querySelector('#newImgBtn');
 const galleryContainer = document.body.querySelector('#galleryContainer');
 
-fetch(`https://picsum.photos/v2/list?page=0&limit=50`)
+let randomizeImages = Math.round(Math.random() * 20);
+console.log(randomizeImages);
+
+fetch(`https://picsum.photos/v2/list?page=${randomizeImages}&limit=50`)
     .then(response => 
     {
         if(response.ok === false)
@@ -36,10 +39,7 @@ const createGallery = (piscumData) =>
         figCaption.textContent = figure.author;
         figureElt.append(img, figCaption, button);
 
-        button.addEventListener('click', () =>
-        {
-            window.open(`${figure.url}`);
-        });
+        button.addEventListener('click', () => window.open(`${figure.url}`))
     })
 }  
 
