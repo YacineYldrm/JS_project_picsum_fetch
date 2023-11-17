@@ -34,7 +34,8 @@ const createGallery = (piscumData) =>
         button.textContent = "See more";
 
         galleryContainer.append(figureElt);
-        img.src = `${figure.download_url}`;
+        img.setAttribute('src', figure.download_url);
+        img.setAttribute('alt', `Ein Bild von ${figure.author}`);
         figCaption.textContent = figure.author;
         figureElt.append(img, figCaption, button);
 
